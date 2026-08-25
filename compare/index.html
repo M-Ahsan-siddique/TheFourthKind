@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fourth Kind — Side-by-Side Landing Page Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0c0c0c;
+            color: #ffffff;
+            font-family: 'Kumbh Sans', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* TOP COMPARISON TOOLBAR */
+        .compare-bar {
+            height: 60px;
+            background: #161616;
+            border-bottom: 1px solid #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 100;
+        }
+
+        .compare-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .compare-brand img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .compare-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #000000;
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid #333333;
+        }
+
+        .view-btn {
+            background: transparent;
+            border: none;
+            color: #888888;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .view-btn.active {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .direct-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .direct-links a {
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .direct-links a:hover {
+            color: #ffffff;
+        }
+
+        /* IFRAME CONTAINER AREA */
+        .compare-viewport-wrap {
+            flex: 1;
+            display: flex;
+            position: relative;
+            background: #000000;
+            overflow: hidden;
+        }
+
+        .split-pane {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border-right: 1px solid #2a2a2a;
+            transition: width 0.3s ease, flex 0.3s ease;
+        }
+
+        .split-pane:last-child {
+            border-right: none;
+        }
+
+        .pane-header {
+            height: 38px;
+            background: #111111;
+            border-bottom: 1px solid #222222;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #888888;
+        }
+
+        .pane-header span.badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .pane-frame {
+            flex: 1;
+            width: 100%;
+            height: calc(100% - 38px);
+            border: none;
+            background: #000000;
+        }
+
+        /* VIEW MODES */
+        body.mode-v1 .split-pane.pane-v2 {
+            display: none;
+        }
+        body.mode-v1 .split-pane.pane-v1 {
+            flex: 1;
+        }
+
+        body.mode-v2 .split-pane.pane-v1 {
+            display: none;
+        }
+        body.mode-v2 .split-pane.pane-v2 {
+            flex: 1;
+        }
+    </style>
+</head>
+<body class="mode-split">
+
+    <!-- TOOLBAR -->
+    <div class="compare-bar">
+        <div class="compare-brand">
+            <img src="../assits/logo/Vector.png" alt="Logo">
+            <span>The Fourth Kind — Preview Comparison</span>
+        </div>
+
+        <div class="compare-controls">
+            <button type="button" class="view-btn" id="btnV1" onclick="setViewMode('v1')">V1 (Classic)</button>
+            <button type="button" class="view-btn active" id="btnSplit" onclick="setViewMode('split')">Side-by-Side (50 / 50)</button>
+            <button type="button" class="view-btn" id="btnV2" onclick="setViewMode('v2')">V2 (New Planet Video)</button>
+        </div>
+
+        <div class="direct-links">
+            <a href="../landing-v2/index.html" target="_blank">Open V2 in New Tab &nearr;</a>
+        </div>
+    </div>
+
+    <!-- COMPARISON VIEWPORTS -->
+    <div class="compare-viewport-wrap">
+        <!-- PANE 1: CLASSIC LANDING PAGE -->
+        <div class="split-pane pane-v1">
+            <div class="pane-header">
+                <span>V1: Classic Landing Page</span>
+                <span class="badge">Port 3000 /</span>
+            </div>
+            <iframe class="pane-frame" src="../index.html"></iframe>
+        </div>
+
+        <!-- PANE 2: NEW LANDING PAGE V2 (PLANET VIDEO) -->
+        <div class="split-pane pane-v2">
+            <div class="pane-header">
+                <span>V2: Planet Orbiting Video Landing Page</span>
+                <span class="badge">Port 3000 /landing-v2</span>
+            </div>
+            <iframe class="pane-frame" src="../landing-v2/index.html"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function setViewMode(mode) {
+            document.body.className = 'mode-' + mode;
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            if (mode === 'v1') document.getElementById('btnV1').classList.add('active');
+            if (mode === 'split') document.getElementById('btnSplit').classList.add('active');
+            if (mode === 'v2') document.getElementById('btnV2').classList.add('active');
+        }
+    </script>
+</body>
+</html>
