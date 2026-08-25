@@ -1,5 +1,8 @@
 // Shopping Cart System for The Fourth Kind
 (function() {
+    if (window.__fourthKindCartInitialized) return;
+    window.__fourthKindCartInitialized = true;
+
     // Injected Styles for the Cart Drawer
     const style = document.createElement('style');
     style.innerHTML = `
@@ -13,7 +16,7 @@
             background-color: #ffffff;
             border-left: 1px solid #e0e0e0;
             box-shadow: -5px 0 25px rgba(0,0,0,0.15);
-            z-index: 10000;
+            z-index: 100000;
             transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
@@ -33,7 +36,7 @@
             background: rgba(0, 0, 0, 0.4);
             opacity: 0;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 99999;
             transition: opacity 0.3s ease;
         }
         .cart-overlay.open {
@@ -51,10 +54,11 @@
         }
         .cart-header h2 {
             margin: 0;
-            font-size: 20px;
+            font-size: 18px;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
+            color: #000;
         }
         .cart-close-btn {
             background: none;
@@ -93,6 +97,7 @@
             border-radius: 4px;
             background-color: #f7f7f7;
             border: 1px solid #e0e0e0;
+            flex-shrink: 0;
         }
         .cart-item-info {
             flex: 1;
@@ -105,6 +110,7 @@
             font-size: 15px;
             font-weight: 500;
             letter-spacing: 0.5px;
+            color: #000;
         }
         .cart-item-subtitle {
             margin: 0;
@@ -148,6 +154,7 @@
             font-size: 14px;
             width: 16px;
             text-align: center;
+            color: #000;
         }
         .cart-remove-btn {
             background: none;
@@ -243,17 +250,43 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15);
             pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Suppress Frameship paywall / Framer internal cart modals */
+        #frameship-cart-portal,
+        .framer-fWanr,
+        [id="frameship-cart-portal"],
+        .frameship-contents {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
         }
     `;
     document.head.appendChild(style);
 
-    // Initial state
-    let cart = [];
-    try {
-        const savedCart = localStorage.getItem('fourth_kind_cart');
-        if (savedCart) cart = JSON.parse(savedCart);
-    } catch(e) {
-        console.error("Failed to load cart data:", e);
+    // Helper: Normalize image path to root relative
+    function normalizeImgPath(path) {
+        if (!path) return '';
+        return path.replace(/^(\.\.\/|\.\/)+/, '/');
+    }
+
+    // Cart State Management
+    function getStoredCart() {
+        try {
+            const saved = localStorage.getItem('fourth_kind_cart');
+            return saved ? JSON.parse(saved) : [];
+        } catch(e) {
+            return [];
+        }
+    }
+
+    function saveStoredCart(cart) {
+        try {
+            localStorage.setItem('fourth_kind_cart', JSON.stringify(cart));
+        } catch(e) {}
+        updateBadge();
     }
 
     // Insert DOM Elements
@@ -279,39 +312,34 @@
     `;
     document.body.appendChild(drawer);
 
-    const itemsContainer = document.getElementById('cartItemsContainer');
-    const totalValEl = document.getElementById('cartTotalVal');
-    const closeBtn = document.getElementById('cartClose');
+    const itemsContainer = drawer.querySelector('#cartItemsContainer');
+    const totalValEl = drawer.querySelector('#cartTotalVal');
+    const closeBtn = drawer.querySelector('#cartClose');
+    const checkoutBtn = drawer.querySelector('#cartCheckout');
 
     // UI Helper Functions
     function toggleCart(isOpen) {
         if (isOpen) {
+            renderCart();
             drawer.classList.add('open');
             overlay.classList.add('open');
-            renderCart();
         } else {
             drawer.classList.remove('open');
             overlay.classList.remove('open');
         }
     }
 
-    // Close listeners
     closeBtn.addEventListener('click', () => toggleCart(false));
     overlay.addEventListener('click', () => toggleCart(false));
 
-    // Save cart state
-    function saveCart() {
-        localStorage.setItem('fourth_kind_cart', JSON.stringify(cart));
-        updateBadge();
-    }
-
     // Parse product price string to number
     function parsePrice(priceStr) {
-        let val = priceStr.replace('$', '').trim();
+        if (typeof priceStr === 'number') return priceStr;
+        let val = String(priceStr).replace('$', '').trim();
         if (val.toUpperCase().endsWith('K')) {
             return parseFloat(val.substring(0, val.length - 1)) * 1000;
         }
-        return parseFloat(val);
+        return parseFloat(val) || 0;
     }
 
     // Format number to currency string
@@ -319,44 +347,55 @@
         if (num >= 1000) {
             return '$' + (num / 1000).toFixed(1) + 'K';
         }
-        return '$' + num;
+        return '$' + Number(num).toFixed(0);
     }
 
     // Add item to cart
     function addItem(id, name, subtitle, price, img, quantity = 1) {
+        const cart = getStoredCart();
         const existing = cart.find(item => item.id === id);
         if (existing) {
             existing.quantity += quantity;
         } else {
-            cart.push({ id, name, subtitle, price, img, quantity });
+            cart.push({
+                id: id,
+                name: name,
+                subtitle: subtitle,
+                price: price,
+                img: normalizeImgPath(img),
+                quantity: quantity
+            });
         }
-        saveCart();
+        saveStoredCart(cart);
         toggleCart(true);
     }
 
     // Remove item from cart
     function removeItem(id) {
+        let cart = getStoredCart();
         cart = cart.filter(item => item.id !== id);
-        saveCart();
+        saveStoredCart(cart);
         renderCart();
     }
 
     // Update quantity
     function updateQuantity(id, change) {
+        const cart = getStoredCart();
         const item = cart.find(item => item.id === id);
         if (item) {
             item.quantity += change;
             if (item.quantity <= 0) {
                 removeItem(id);
-            } else {
-                saveCart();
-                renderCart();
+                return;
             }
+            saveStoredCart(cart);
+            renderCart();
         }
     }
 
     // Render cart items list
     function renderCart() {
+        const cart = getStoredCart();
         if (cart.length === 0) {
             itemsContainer.innerHTML = `
                 <div class="cart-empty">
@@ -379,7 +418,7 @@
             const itemEl = document.createElement('div');
             itemEl.className = 'cart-item';
             itemEl.innerHTML = `
-                <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+                <img class="cart-item-img" src="${normalizeImgPath(item.img)}" alt="${item.name}">
                 <div class="cart-item-info">
                     <h3 class="cart-item-title">${item.name}</h3>
                     <p class="cart-item-subtitle">${item.subtitle}</p>
@@ -397,22 +436,23 @@
 
         totalValEl.innerText = formatPrice(total);
 
-        // Attach listeners to items controls
-        document.querySelectorAll('.decrease-qty').forEach(btn => {
+        // Attach listeners to quantity and remove buttons
+        itemsContainer.querySelectorAll('.decrease-qty').forEach(btn => {
             btn.addEventListener('click', () => updateQuantity(btn.dataset.id, -1));
         });
-        document.querySelectorAll('.increase-qty').forEach(btn => {
+        itemsContainer.querySelectorAll('.increase-qty').forEach(btn => {
             btn.addEventListener('click', () => updateQuantity(btn.dataset.id, 1));
         });
-        document.querySelectorAll('.remove-item').forEach(btn => {
+        itemsContainer.querySelectorAll('.remove-item').forEach(btn => {
             btn.addEventListener('click', () => removeItem(btn.dataset.id));
         });
     }
 
     // Update cart notification badge in header
     function updateBadge() {
+        const cart = getStoredCart();
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        document.querySelectorAll('[data-framer-name="Shopping Bag"]').forEach(bag => {
+        document.querySelectorAll('.framer-1hj4sdy-container, [data-framer-name="Shopping Bag"]').forEach(bag => {
             const oldBadge = bag.querySelector('.cart-badge');
             if (oldBadge) oldBadge.remove();
 
@@ -426,39 +466,125 @@
         });
     }
 
-    // Checkout alert
-    document.getElementById('cartCheckout').addEventListener('click', () => {
+    // Checkout button
+    checkoutBtn.addEventListener('click', () => {
+        const cart = getStoredCart();
+        if (cart.length === 0) {
+            alert('Your cart is empty.');
+            return;
+        }
         alert('Thank you for your order! Checkout process simulation complete.');
-        cart = [];
-        saveCart();
+        saveStoredCart([]);
         toggleCart(false);
     });
 
-    // Initialize Header Cart Buttons and intercept product link transitions
-    setTimeout(() => {
-        document.querySelectorAll('[data-framer-name="Shopping Bag"]').forEach(bag => {
-            bag.style.cursor = 'pointer';
-            bag.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                toggleCart(true);
-            });
+    // Capture-phase global click delegation for shopping cart and internal link navigation
+    document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.closest('.cart-drawer')) return;
+
+        // 1. Intercept Shopping Cart button clicks
+        const cartTrigger = target.closest(
+            '.framer-1hj4sdy-container, [data-framer-name="Shopping Bag"], [name="Shopping Bag"], .framer-SBvaW, .framer-x7pb3g-container, .cart-icon-btn, .header-cart-btn'
+        );
+
+        if (cartTrigger) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            toggleCart(true);
+            return;
+        }
+
+        // 2. Intercept ANY internal navigation link to bypass Framer React Router hijack
+        const link = target.closest('a');
+        if (link) {
+            const href = link.getAttribute('href');
+            if (href && !href.startsWith('#') && !href.startsWith('javascript:') && !link.target) {
+                if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('//') && !href.startsWith('mailto:')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    window.location.href = href;
+                }
+            }
+        }
+    }, true);
+
+    // Inject CSS for Vector Logo across all pages
+    const logoStyles = document.createElement('style');
+    logoStyles.id = 'vector-brand-logo-styles';
+    logoStyles.innerHTML = `
+        .brand-logo-img, .header-logo-icon, .framer-hmafz8 img {
+            width: 28px !important;
+            height: 28px !important;
+            object-fit: contain !important;
+            display: inline-block !important;
+            vertical-align: middle !important;
+            transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .framer-hmafz8 {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 28px !important;
+            height: 28px !important;
+            min-width: 28px !important;
+            overflow: visible !important;
+        }
+        .navbar-on-white .brand-logo-img,
+        .navbar-on-white .header-logo-icon,
+        .navbar-on-white .framer-hmafz8 img,
+        .framer-14gypjf-container.navbar-on-white .framer-hmafz8 img {
+            filter: invert(1) !important;
+        }
+    `;
+    document.head.appendChild(logoStyles);
+
+    function initBrandLogo() {
+        const logoContainers = document.querySelectorAll('.framer-hmafz8');
+        logoContainers.forEach(container => {
+            if (!container.querySelector('.brand-logo-img')) {
+                container.innerHTML = '';
+                const img = document.createElement('img');
+                img.className = 'brand-logo-img';
+                const depth = window.location.pathname.split('/').filter(Boolean).length;
+                const prefix = depth > 0 ? '../'.repeat(depth) : './';
+                img.src = prefix + 'assits/logo/Vector.png';
+                img.alt = 'The Fourth Kind Logo';
+                container.appendChild(img);
+            }
         });
-        
-        // Force direct page reload for product links to bypass React routing intercept
-        document.querySelectorAll('a[href*="shop/"], a[href*="contact/"]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.location.href = link.getAttribute('href');
-            }, true); // Use capture phase to intercept before React router
-        });
-        
+    }
+
+    // Initial badge & logo update
+    function initOnLoad() {
         updateBadge();
-    }, 1000);
+        initBrandLogo();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initOnLoad);
+    } else {
+        initOnLoad();
+    }
+    window.addEventListener('load', () => {
+        updateBadge();
+        initBrandLogo();
+    });
+
+    // Periodically ensure logo is maintained even if React hydrates
+    setTimeout(initBrandLogo, 200);
+    setTimeout(initBrandLogo, 600);
+    setTimeout(initBrandLogo, 1500);
 
     // Export AddToCart helper globally
     window.AddToCart = function(id, name, subtitle, price, img, quantity) {
         addItem(id, name, subtitle, price, img, quantity);
+    };
+
+    // Export cart opener globally
+    window.openCustomCart = function() {
+        toggleCart(true);
     };
 })();

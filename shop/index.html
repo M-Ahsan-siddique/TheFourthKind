@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - The Fourth Kind</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Kumbh Sans', 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 48px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav-link {
+            color: #888888;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff;
+        }
+        
+        /* Cart Icon button */
+        .cart-icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .cart-icon-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #ffffff;
+        }
+
+        /* Hero / Title */
+        .shop-header {
+            max-width: 1200px;
+            margin: 60px auto 40px;
+            padding: 0 48px;
+            text-align: center;
+        }
+        .shop-header h1 {
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin: 0 0 12px 0;
+        }
+        .shop-header p {
+            color: #888888;
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        
+        /* Product Grid */
+        .products-grid {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .product-card {
+            background: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            color: #ffffff;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        .product-card-img-wrap {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #181818;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-card-img {
+            transform: scale(1.05);
+        }
+        .product-card-info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+        .product-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        .product-card-subtitle {
+            font-size: 13px;
+            color: #888888;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .product-card-price {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: auto;
+            padding-top: 12px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="../index.html">The Fourth Kind</a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">Shop</a>
+            <a href="../contact/index.html" class="nav-link">Contact</a>
+            <!-- Shopping Bag -->
+            <div class="cart-icon-btn" data-framer-name="Shopping Bag">
+                <svg viewBox="0 0 20 20">
+                    <path d="M5 4h10v3H5V4zm-2 5v9a2 2 0 002 2h10a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2zm2-4a2 2 0 012-2h6a2 2 0 012 2v2H5V5z" fill-rule="evenodd" clip-rule="evenodd"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <div class="shop-header">
+        <h1>Our Coffee</h1>
+        <p>Single Origin &amp; Rare Roast Selections</p>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="products-grid">
+        <a href="double-pendant-necklace/index.html" class="product-card">
+            <div class="product-card-img-wrap">
+                <img src="../framerusercontent.com/images/first_coffee.png" alt="Aurora Protocol" class="product-card-img">
+            </div>
+            <div class="product-card-info">
+                <h3 class="product-card-title">Aurora Protocol</h3>
+                <p class="product-card-subtitle">Double Pendant Necklace</p>
+                <div class="product-card-price">$1.1K</div>
+            </div>
+        </a>
+
+        <a href="charm-link-bracelet/index.html" class="product-card">
+            <div class="product-card-img-wrap">
+                <img src="../framerusercontent.com/images/second_coffee.png" alt="Event Horizon" class="product-card-img">
+            </div>
+            <div class="product-card-info">
+                <h3 class="product-card-title">Event Horizon</h3>
+                <p class="product-card-subtitle">Charm Link Bracelet</p>
+                <div class="product-card-price">$1.1K</div>
+            </div>
+        </a>
+
+        <a href="teardrop-dangle-earrings/index.html" class="product-card">
+            <div class="product-card-img-wrap">
+                <img src="../framerusercontent.com/images/third_coffee.png" alt="Nebula Drift" class="product-card-img">
+            </div>
+            <div class="product-card-info">
+                <h3 class="product-card-title">Nebula Drift</h3>
+                <p class="product-card-subtitle">Teardrop Dangle Earrings</p>
+                <div class="product-card-price">$850</div>
+            </div>
+        </a>
+    </div>
+
+    <script src="../cart.js"></script>
+</body>
+</html>
