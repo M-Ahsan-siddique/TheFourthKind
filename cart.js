@@ -511,10 +511,37 @@
         }
     }, true);
 
-    // Inject CSS for Vector Logo and brand header across all pages
+    // Inject CSS for Vector Logo and universal pointer cursors across all pages
     const logoStyles = document.createElement('style');
     logoStyles.id = 'vector-brand-logo-styles';
     logoStyles.innerHTML = `
+        /* Force cursor pointer and disable text editor selection on all nav, header, and buttons */
+        a, button,
+        a *, button *,
+        .site-header, .site-header *,
+        .site-header-container, .site-header-container *,
+        .framer-14gypjf-container, .framer-14gypjf-container *,
+        .framer-SmLyV, .framer-SmLyV *,
+        .framer-tklrn2, .framer-tklrn2 *,
+        .framer-1bwqlp0, .framer-1bwqlp0 *,
+        .framer-xeaj90, .framer-xeaj90 *,
+        .header-logo-link, .header-logo-link *,
+        .header-menu-link, .header-menu-link *,
+        .nav-link, .nav-link *,
+        .header-cart-btn, .header-cart-btn *,
+        .header-actions, .header-actions *,
+        .menu-toggle-btn, .menu-toggle-btn *,
+        .hero-cta-btn, .hero-cta-btn *,
+        .scroll-indicator, .scroll-indicator *,
+        .origin-card, .origin-card *,
+        .product-card, .product-card *,
+        .btn-add-cart, .btn-view-details,
+        #floating-variant-switcher, #floating-variant-switcher * {
+            cursor: pointer !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+        }
+
         /* Prevent logo and brand text collision on V1 & all pages */
         .framer-SmLyV.framer-tklrn2,
         .header-logo-link {
@@ -528,6 +555,15 @@
             max-width: 100% !important;
         }
 
+        /* Hide Framer internal broken sprite SVGs that distort the logo */
+        .framer-hmafz8 .framer-oq0czg,
+        .framer-hmafz8 .framer-1q714nk,
+        .framer-hmafz8 .framer-1tsr5q1,
+        .framer-hmafz8 .svgContainer,
+        .framer-hmafz8 svg {
+            display: none !important;
+        }
+
         .framer-SmLyV .framer-hmafz8,
         .header-logo-icon-wrap {
             display: flex !important;
@@ -536,15 +572,20 @@
             width: 28px !important;
             height: 28px !important;
             min-width: 28px !important;
+            max-width: 28px !important;
             flex-shrink: 0 !important;
             margin: 0 !important;
             overflow: visible !important;
+            background-size: contain !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
         }
 
         .brand-logo-img, .header-logo-icon, .framer-hmafz8 img {
             width: 28px !important;
             height: 28px !important;
             min-width: 28px !important;
+            max-width: 28px !important;
             object-fit: contain !important;
             display: block !important;
             transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -575,7 +616,9 @@
         /* Navbar Inversion over White Section */
         .navbar-on-white .brand-logo-img,
         .navbar-on-white .header-logo-icon,
+        .navbar-on-white .framer-hmafz8,
         .navbar-on-white .framer-hmafz8 img,
+        .framer-14gypjf-container.navbar-on-white .framer-hmafz8,
         .framer-14gypjf-container.navbar-on-white .framer-hmafz8 img {
             filter: invert(1) !important;
         }
@@ -587,18 +630,23 @@
     document.head.appendChild(logoStyles);
 
     function initBrandLogo() {
+        const depth = window.location.pathname.split('/').filter(Boolean).length;
+        const prefix = depth > 0 ? '../'.repeat(depth) : './';
+        const logoUrl = prefix + 'assits/logo/Vector.png';
+
         const brandLinks = document.querySelectorAll('.framer-SmLyV.framer-tklrn2, .header-logo-link, [data-framer-name="Default"], [data-framer-name="Mobile"]');
         brandLinks.forEach(link => {
             const container = link.querySelector('.framer-hmafz8');
-            if (container && !container.querySelector('.brand-logo-img')) {
-                container.innerHTML = '';
-                const img = document.createElement('img');
-                img.className = 'brand-logo-img';
-                const depth = window.location.pathname.split('/').filter(Boolean).length;
-                const prefix = depth > 0 ? '../'.repeat(depth) : './';
-                img.src = prefix + 'assits/logo/Vector.png';
-                img.alt = 'The Fourth Kind Logo';
-                container.appendChild(img);
+            if (container) {
+                container.style.backgroundImage = `url('${logoUrl}')`;
+                if (!container.querySelector('.brand-logo-img')) {
+                    container.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.className = 'brand-logo-img';
+                    img.src = logoUrl;
+                    img.alt = 'The Fourth Kind Logo';
+                    container.appendChild(img);
+                }
             }
 
             // If the link has no text (e.g. Framer Mobile Variant), inject THE FOURTH KIND text
@@ -650,14 +698,17 @@
             font-family: 'Kumbh Sans', sans-serif;
             font-size: 12px;
             font-weight: 500;
+            cursor: pointer !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
         `;
 
         switcher.innerHTML = `
-            <a href="${isV2 ? prefix + 'index.html' : prefix + 'landing-v2/index.html'}" style="color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.12); transition: background 0.2s;">
+            <a href="${isV2 ? prefix + 'index.html' : prefix + 'landing-v2/index.html'}" style="color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.12); transition: background 0.2s; cursor: pointer;">
                 <span>${isV2 ? '✦ View V1 (Classic)' : '🪐 View V2 (Planet Video)'}</span>
             </a>
             <span style="color: rgba(255,255,255,0.25);">|</span>
-            <a href="${prefix}compare/index.html" style="color: #aaaaaa; text-decoration: none; padding: 4px 8px; border-radius: 20px; transition: color 0.2s;">
+            <a href="${prefix}compare/index.html" style="color: #aaaaaa; text-decoration: none; padding: 4px 8px; border-radius: 20px; transition: color 0.2s; cursor: pointer;">
                 <span>⚡ Compare</span>
             </a>
         `;
