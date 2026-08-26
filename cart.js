@@ -515,9 +515,11 @@
     const logoStyles = document.createElement('style');
     logoStyles.id = 'vector-brand-logo-styles';
     logoStyles.innerHTML = `
-        /* Force cursor pointer and disable text editor selection on all nav, header, and buttons */
+        /* Force cursor pointer and disable text editor selection on all nav, header, links, and buttons */
         a, button,
         a *, button *,
+        header, header *,
+        nav, nav *,
         .site-header, .site-header *,
         .site-header-container, .site-header-container *,
         .framer-14gypjf-container, .framer-14gypjf-container *,
@@ -525,6 +527,18 @@
         .framer-tklrn2, .framer-tklrn2 *,
         .framer-1bwqlp0, .framer-1bwqlp0 *,
         .framer-xeaj90, .framer-xeaj90 *,
+        .framer-157tqj7, .framer-157tqj7 *,
+        .framer-1q4jgyq, .framer-1q4jgyq *,
+        .framer-1o2m0j5, .framer-1o2m0j5 *,
+        .framer-p232i8, .framer-p232i8 *,
+        .framer-1p5y5m6, .framer-1p5y5m6 *,
+        .framer-16n724t, .framer-16n724t *,
+        [data-framer-name="Navigation"], [data-framer-name="Navigation"] *,
+        [data-framer-name="Header"], [data-framer-name="Header"] *,
+        [data-framer-name="Links"], [data-framer-name="Links"] *,
+        [data-framer-name="Shop"], [data-framer-name="Shop"] *,
+        [data-framer-name="Contact"], [data-framer-name="Contact"] *,
+        [data-framer-name="Shopping Bag"], [data-framer-name="Shopping Bag"] *,
         .header-logo-link, .header-logo-link *,
         .header-menu-link, .header-menu-link *,
         .nav-link, .nav-link *,

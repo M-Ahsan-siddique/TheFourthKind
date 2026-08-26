@@ -417,6 +417,7 @@
             flex-direction: column;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
             position: relative;
+            cursor: pointer;
         }
 
         .product-card:hover {
@@ -425,28 +426,31 @@
             box-shadow: 0 24px 48px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 255, 255, 0.04);
         }
 
+        /* Product image covers the entire top box all the way down to the text boundary line */
         .product-media-wrap {
             position: relative;
             width: 100%;
-            height: 380px;
-            background: radial-gradient(circle at center, #1c1c1c 0%, #0c0c0c 80%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 32px;
+            height: 390px;
+            background: #000000;
+            display: block;
+            padding: 0;
             overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .product-canister-img {
-            max-width: 80%;
-            max-height: 85%;
-            object-fit: contain;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .product-card:hover .product-canister-img {
-            transform: scale(1.08) translateY(-4px);
+            transform: scale(1.06);
         }
 
         .product-origin-badge {
@@ -455,6 +459,7 @@
             left: 20px;
             background: rgba(0, 0, 0, 0.65);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 6px 14px;
             border-radius: 20px;
@@ -462,6 +467,7 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: #ffffff;
+            z-index: 2;
         }
 
         .product-details {
