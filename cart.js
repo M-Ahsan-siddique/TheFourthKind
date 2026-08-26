@@ -558,14 +558,18 @@
         }
 
         .framer-SmLyV .framer-1m4kwh8 p,
-        .framer-SmLyV .framer-text {
+        .framer-SmLyV .framer-text,
+        .injected-brand-text {
             font-family: 'Kumbh Sans', sans-serif !important;
-            font-size: clamp(16px, 1.8vw, 24px) !important;
+            font-size: clamp(15px, 1.8vw, 24px) !important;
             font-weight: 300 !important;
             letter-spacing: 0.5px !important;
+            text-transform: uppercase !important;
             white-space: nowrap !important;
             margin: 0 !important;
             line-height: 1.2 !important;
+            color: #ffffff !important;
+            display: inline-block !important;
         }
 
         /* Navbar Inversion over White Section */
@@ -575,13 +579,18 @@
         .framer-14gypjf-container.navbar-on-white .framer-hmafz8 img {
             filter: invert(1) !important;
         }
+        .navbar-on-white .injected-brand-text,
+        .framer-14gypjf-container.navbar-on-white .injected-brand-text {
+            color: #000000 !important;
+        }
     `;
     document.head.appendChild(logoStyles);
 
     function initBrandLogo() {
-        const logoContainers = document.querySelectorAll('.framer-hmafz8');
-        logoContainers.forEach(container => {
-            if (!container.querySelector('.brand-logo-img')) {
+        const brandLinks = document.querySelectorAll('.framer-SmLyV.framer-tklrn2, .header-logo-link, [data-framer-name="Default"], [data-framer-name="Mobile"]');
+        brandLinks.forEach(link => {
+            const container = link.querySelector('.framer-hmafz8');
+            if (container && !container.querySelector('.brand-logo-img')) {
                 container.innerHTML = '';
                 const img = document.createElement('img');
                 img.className = 'brand-logo-img';
@@ -590,6 +599,15 @@
                 img.src = prefix + 'assits/logo/Vector.png';
                 img.alt = 'The Fourth Kind Logo';
                 container.appendChild(img);
+            }
+
+            // If the link has no text (e.g. Framer Mobile Variant), inject THE FOURTH KIND text
+            const hasText = link.textContent.trim().length > 0;
+            if (!hasText && !link.querySelector('.injected-brand-text')) {
+                const textSpan = document.createElement('span');
+                textSpan.className = 'injected-brand-text';
+                textSpan.textContent = 'THE FOURTH KIND';
+                link.appendChild(textSpan);
             }
         });
     }
@@ -603,6 +621,8 @@
 
     // Floating Variant Switcher for client review
     function initVariantSwitcher() {
+        // NEVER show inside iframes (e.g. on compare page)
+        if (window.self !== window.top) return;
         if (document.getElementById('floating-variant-switcher')) return;
         if (window.location.pathname.includes('/compare')) return;
 
