@@ -511,27 +511,64 @@
         }
     }, true);
 
-    // Inject CSS for Vector Logo across all pages
+    // Inject CSS for Vector Logo and brand header across all pages
     const logoStyles = document.createElement('style');
     logoStyles.id = 'vector-brand-logo-styles';
     logoStyles.innerHTML = `
-        .brand-logo-img, .header-logo-icon, .framer-hmafz8 img {
-            width: 28px !important;
-            height: 28px !important;
-            object-fit: contain !important;
-            display: inline-block !important;
-            vertical-align: middle !important;
-            transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        /* Prevent logo and brand text collision on V1 & all pages */
+        .framer-SmLyV.framer-tklrn2,
+        .header-logo-link {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 12px !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+            flex-shrink: 0 !important;
+            max-width: 100% !important;
         }
-        .framer-hmafz8 {
+
+        .framer-SmLyV .framer-hmafz8,
+        .header-logo-icon-wrap {
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             width: 28px !important;
             height: 28px !important;
             min-width: 28px !important;
+            flex-shrink: 0 !important;
+            margin: 0 !important;
             overflow: visible !important;
         }
+
+        .brand-logo-img, .header-logo-icon, .framer-hmafz8 img {
+            width: 28px !important;
+            height: 28px !important;
+            min-width: 28px !important;
+            object-fit: contain !important;
+            display: block !important;
+            transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Keep THE FOURTH KIND brand text visible in split screen & mobile */
+        .framer-SmLyV .framer-1m4kwh8 {
+            display: flex !important;
+            align-items: center !important;
+            flex-shrink: 0 !important;
+        }
+
+        .framer-SmLyV .framer-1m4kwh8 p,
+        .framer-SmLyV .framer-text {
+            font-family: 'Kumbh Sans', sans-serif !important;
+            font-size: clamp(16px, 1.8vw, 24px) !important;
+            font-weight: 300 !important;
+            letter-spacing: 0.5px !important;
+            white-space: nowrap !important;
+            margin: 0 !important;
+            line-height: 1.2 !important;
+        }
+
+        /* Navbar Inversion over White Section */
         .navbar-on-white .brand-logo-img,
         .navbar-on-white .header-logo-icon,
         .navbar-on-white .framer-hmafz8 img,

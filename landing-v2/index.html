@@ -13,7 +13,8 @@
             --text-color: #ffffff;
             --text-muted: #888888;
             --accent-glow: rgba(255, 255, 255, 0.15);
-            --border-subtle: rgba(255, 255, 255, 0.18);
+            --border-subtle: rgba(255, 255, 255, 0.15);
+            --card-bg: #0c0c0c;
         }
 
         * {
@@ -52,8 +53,8 @@
         }
 
         .site-header.scrolled {
-            padding: 20px 48px;
-            background: rgba(0, 0, 0, 0.85);
+            padding: 18px 48px;
+            background: rgba(0, 0, 0, 0.88);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -68,14 +69,14 @@
         }
 
         .brand-logo-icon {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             object-fit: contain;
             display: block;
         }
 
         .brand-logo-text {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -85,7 +86,7 @@
         .header-nav {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 36px;
         }
 
         .nav-link {
@@ -106,7 +107,7 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
         }
 
         .cart-toggle-btn {
@@ -152,7 +153,7 @@
             align-items: center;
             overflow: hidden;
             background-color: #000000;
-            padding: 120px 56px 80px;
+            padding: clamp(90px, 12vh, 130px) clamp(24px, 4vw, 56px) 70px;
         }
 
         /* Background Planet Video */
@@ -190,13 +191,14 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 680px;
+            max-width: 650px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             opacity: 0;
             transform: translateY(30px);
             animation: heroFadeIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+            padding-bottom: 20px;
         }
 
         @keyframes heroFadeIn {
@@ -211,13 +213,13 @@
         }
 
         .hero-headline {
-            font-size: clamp(52px, 8.5vw, 108px);
+            font-size: clamp(34px, 6vw, 96px);
             font-weight: 800;
-            line-height: 0.98;
-            letter-spacing: clamp(2px, 0.5vw, 6px);
+            line-height: 1.02;
+            letter-spacing: clamp(1px, 0.4vw, 4px);
             text-transform: uppercase;
             color: #ffffff;
-            margin-bottom: 36px;
+            margin-bottom: clamp(16px, 2.5vh, 32px);
         }
 
         .hero-headline span {
@@ -225,13 +227,13 @@
         }
 
         .hero-tagline {
-            font-size: clamp(13px, 1.4vw, 17px);
+            font-size: clamp(11px, 1.2vw, 15px);
             font-weight: 400;
-            line-height: 1.8;
+            line-height: 1.7;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.82);
-            margin-bottom: 48px;
+            margin-bottom: clamp(24px, 3.5vh, 44px);
         }
         .hero-tagline span {
             display: block;
@@ -241,15 +243,15 @@
         .hero-cta-btn {
             display: inline-flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px 32px;
+            gap: 14px;
+            padding: 14px 28px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.35);
             color: #ffffff;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            letter-spacing: 2.5px;
+            letter-spacing: 2.2px;
             text-transform: uppercase;
             width: fit-content;
             cursor: pointer;
@@ -258,6 +260,7 @@
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
+            z-index: 5;
         }
 
         .hero-cta-btn::before {
@@ -297,8 +300,8 @@
         }
 
         .cta-orbit-icon {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             object-fit: contain;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -306,7 +309,7 @@
         /* Scroll Down Pill Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 40px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
@@ -315,7 +318,7 @@
             align-items: center;
             text-decoration: none;
             color: #ffffff;
-            opacity: 0.8;
+            opacity: 0.75;
             transition: opacity 0.3s ease;
         }
         .scroll-indicator:hover {
@@ -323,10 +326,10 @@
         }
 
         .scroll-pill {
-            width: 30px;
-            height: 52px;
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 20px;
+            width: 26px;
+            height: 44px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -335,8 +338,8 @@
         }
 
         .scroll-arrow {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             stroke: #ffffff;
             stroke-width: 2;
             fill: none;
@@ -355,18 +358,21 @@
             }
         }
 
-        /* SECTION 2: COFFEE ORIGINS CARDS */
-        .origins-section {
-            padding: 140px 56px 120px;
-            background: #000000;
+        /* ================================================= */
+        /* SECTION 2: OUR COFFEE (COFFEES PRESENTATION)      */
+        /* ================================================= */
+        .our-coffee-section {
+            padding: 130px 56px 100px;
+            background: #080808;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             position: relative;
             z-index: 2;
         }
 
         .section-header {
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto 72px;
+            max-width: 760px;
+            margin: 0 auto 64px;
         }
 
         .section-eyebrow {
@@ -378,7 +384,7 @@
         }
 
         .section-title {
-            font-size: clamp(32px, 5vw, 60px);
+            font-size: clamp(34px, 5vw, 64px);
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -393,11 +399,184 @@
             font-weight: 300;
         }
 
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 36px;
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: #0f0f0f;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 255, 255, 0.04);
+        }
+
+        .product-media-wrap {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background: radial-gradient(circle at center, #1c1c1c 0%, #0c0c0c 80%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            overflow: hidden;
+        }
+
+        .product-canister-img {
+            max-width: 80%;
+            max-height: 85%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover .product-canister-img {
+            transform: scale(1.08) translateY(-4px);
+        }
+
+        .product-origin-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        .product-details {
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .product-meta-top {
+            margin-bottom: 24px;
+        }
+
+        .product-roast {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888888;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .product-flavor-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .flavor-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbbbbb;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .product-action-btns {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-add-cart {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .btn-add-cart:hover {
+            background: #e0e0e0;
+            transform: scale(1.03);
+        }
+
+        .btn-view-details {
+            color: #888888;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .btn-view-details:hover {
+            color: #ffffff;
+        }
+
+        /* ================================================= */
+        /* SECTION 3: COFFEE ORIGINS & TERROIRS (ARTWORK)   */
+        /* ================================================= */
+        .origins-section {
+            padding: 140px 56px 120px;
+            background: #000000;
+            position: relative;
+            z-index: 2;
+        }
+
         .origins-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 32px;
-            max-width: 1300px;
+            max-width: 1320px;
             margin: 0 auto;
         }
 
@@ -494,7 +673,7 @@
             gap: 12px;
         }
 
-        /* SECTION 3: CRAFT & VISION */
+        /* SECTION 4: CRAFT & VISION */
         .vision-section {
             padding: 120px 56px;
             background: radial-gradient(circle at center, #111111 0%, #000000 70%);
@@ -669,7 +848,7 @@
                 width: 100%;
                 opacity: 0.6;
             }
-            .origins-grid {
+            .products-grid, .origins-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             .footer-grid {
@@ -681,7 +860,7 @@
             .header-nav {
                 display: none;
             }
-            .origins-grid {
+            .products-grid, .origins-grid {
                 grid-template-columns: 1fr;
             }
             .footer-links {
@@ -704,8 +883,9 @@
 
         <nav class="header-nav">
             <a href="#hero" class="nav-link active">Home</a>
+            <a href="#our-coffee" class="nav-link">Our Coffee</a>
+            <a href="#origins" class="nav-link">Origins</a>
             <a href="#vision" class="nav-link">About</a>
-            <a href="#origins" class="nav-link">Collection</a>
             <a href="../shop/index.html" class="nav-link">Shop</a>
             <a href="../contact/index.html" class="nav-link">Contact</a>
         </nav>
@@ -730,9 +910,10 @@
         <button type="button" class="overlay-menu-close" id="menuClose" aria-label="Close Menu">&times;</button>
         <nav class="overlay-menu-nav">
             <a href="#hero" class="menu-item-link">Home</a>
+            <a href="#our-coffee" class="menu-item-link">Our Coffee</a>
             <a href="#origins" class="menu-item-link">Coffee Origins</a>
             <a href="#vision" class="menu-item-link">Philosophy</a>
-            <a href="../shop/index.html">Shop Coffees</a>
+            <a href="../shop/index.html">Shop All Coffees</a>
             <a href="../contact/index.html">Contact Us</a>
             <a href="../index.html">Classic Landing Page</a>
         </nav>
@@ -760,14 +941,14 @@
                     <span>QUESTIONING REALITY.</span>
                     <span>EXPANDING PERSPECTIVES.</span>
                 </div>
-                <a href="#origins" class="hero-cta-btn">
+                <a href="#our-coffee" class="hero-cta-btn">
                     <span>EXPLORE THE UNKNOWN</span>
                     <img src="../assits/logo/Vector.png" alt="Celestial Orbit" class="cta-orbit-icon">
                 </a>
             </div>
 
             <!-- Scroll Down Pill Indicator -->
-            <a href="#origins" class="scroll-indicator" aria-label="Scroll Down">
+            <a href="#our-coffee" class="scroll-indicator" aria-label="Scroll Down">
                 <div class="scroll-pill">
                     <svg class="scroll-arrow" viewBox="0 0 24 24">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -777,12 +958,108 @@
             </a>
         </section>
 
-        <!-- SECTION 2: COFFEE ORIGINS -->
+        <!-- ================================================= -->
+        <!-- SECTION 2: OUR COFFEE (COFFEES PRESENTATION)      -->
+        <!-- ================================================= -->
+        <section class="our-coffee-section" id="our-coffee">
+            <div class="section-header">
+                <p class="section-eyebrow">Signature Roasts</p>
+                <h2 class="section-title">Our Coffee</h2>
+                <p class="section-desc">Handcrafted micro-lots curated from ancient volcanic altitudes and roasted to reveal extraordinary celestial flavor notes.</p>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1: Aurora Protocol (Ethiopian Coffee) -->
+                <div class="product-card">
+                    <div class="product-media-wrap">
+                        <span class="product-origin-badge">Ethiopian Origin</span>
+                        <img src="../assits/first coffe (euthopian).png" alt="Aurora Protocol Ethiopian Coffee" class="product-canister-img">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-meta-top">
+                            <p class="product-roast">Light – Medium Roast &bull; Washed Heirloom</p>
+                            <h3 class="product-name">Aurora Protocol</h3>
+                            <div class="product-flavor-tags">
+                                <span class="flavor-tag">Bergamot</span>
+                                <span class="flavor-tag">Wild Honey</span>
+                                <span class="flavor-tag">Jasmine Tea</span>
+                                <span class="flavor-tag">Peach Nectar</span>
+                            </div>
+                        </div>
+                        <div class="product-price-row">
+                            <span class="product-price">$1.1K</span>
+                            <div class="product-action-btns">
+                                <a href="../shop/double-pendant-necklace/index.html" class="btn-view-details">Details</a>
+                                <button type="button" class="btn-add-cart" onclick="AddToCart('ethiopian-origin', 'Aurora Protocol', 'Single Origin Heirloom · Ethiopia', '$1.1K', '/framerusercontent.com/images/first_coffee.png', 1)">Add To Bag</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Event Horizon (Brazilian Coffee) -->
+                <div class="product-card">
+                    <div class="product-media-wrap">
+                        <span class="product-origin-badge">Brazilian Origin</span>
+                        <img src="../assits/second coffe(brazil).png" alt="Event Horizon Brazilian Coffee" class="product-canister-img">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-meta-top">
+                            <p class="product-roast">Medium – Dark Roast &bull; Natural Sun-Cured</p>
+                            <h3 class="product-name">Event Horizon</h3>
+                            <div class="product-flavor-tags">
+                                <span class="flavor-tag">Dark Chocolate</span>
+                                <span class="flavor-tag">Toasted Hazelnut</span>
+                                <span class="flavor-tag">Caramel Fudge</span>
+                                <span class="flavor-tag">Cane Sugar</span>
+                            </div>
+                        </div>
+                        <div class="product-price-row">
+                            <span class="product-price">$1.1K</span>
+                            <div class="product-action-btns">
+                                <a href="../shop/charm-link-bracelet/index.html" class="btn-view-details">Details</a>
+                                <button type="button" class="btn-add-cart" onclick="AddToCart('brazilian-origin', 'Event Horizon', 'Sun-Cured Estate Micro-Lot · Brazil', '$1.1K', '/framerusercontent.com/images/second_coffee.png', 1)">Add To Bag</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Nebula Drift (Colombian Coffee) -->
+                <div class="product-card">
+                    <div class="product-media-wrap">
+                        <span class="product-origin-badge">Colombian Origin</span>
+                        <img src="../assits/third coffee(colombia).png" alt="Nebula Drift Colombian Coffee" class="product-canister-img">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-meta-top">
+                            <p class="product-roast">Medium Roast &bull; 72hr Anaerobic Fermentation</p>
+                            <h3 class="product-name">Nebula Drift</h3>
+                            <div class="product-flavor-tags">
+                                <span class="flavor-tag">Dark Cherry</span>
+                                <span class="flavor-tag">Cocoa Nibs</span>
+                                <span class="flavor-tag">Brown Sugar</span>
+                                <span class="flavor-tag">Spiced Plum</span>
+                            </div>
+                        </div>
+                        <div class="product-price-row">
+                            <span class="product-price">$850</span>
+                            <div class="product-action-btns">
+                                <a href="../shop/teardrop-dangle-earrings/index.html" class="btn-view-details">Details</a>
+                                <button type="button" class="btn-add-cart" onclick="AddToCart('colombian-origin', 'Nebula Drift', 'Anaerobic Reserve Lot · Colombia', '$850', '/framerusercontent.com/images/third_coffee.png', 1)">Add To Bag</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 3: COFFEE ORIGINS & TERROIRS              -->
+        <!-- ================================================= -->
         <section class="origins-section" id="origins">
             <div class="section-header">
                 <p class="section-eyebrow">Terroirs & Origins</p>
-                <h2 class="section-title">The Collection</h2>
-                <p class="section-desc">Single-origin micro-lots curated from ancient alpine volcanic plateaus, anaerobically fermented and roasted to perfection.</p>
+                <h2 class="section-title">The Origins</h2>
+                <p class="section-desc">Explore the indigenous landscapes, volcanic elevations, and artisan farmers behind every micro-lot.</p>
             </div>
 
             <div class="origins-grid">
@@ -794,12 +1071,12 @@
                     </div>
                     <div class="origin-card-body">
                         <div>
-                            <p class="origin-country">Ethiopia &bull; Yirgacheffe</p>
-                            <h3 class="origin-name">Aurora Protocol</h3>
-                            <p class="origin-notes">Bergamot, delicate lemon blossom, wild honey, and fragrant jasmine tea.</p>
+                            <p class="origin-country">Ethiopia &bull; Yirgacheffe Highlands</p>
+                            <h3 class="origin-name">Ethiopian Origin</h3>
+                            <p class="origin-notes">Ancestral heirloom trees rooted in volcanic alpine soil. Delicate bergamot, sweet jasmine blossom, and golden honey nectar.</p>
                         </div>
                         <div class="origin-card-cta">
-                            <span>Experience Origin</span> &rarr;
+                            <span>Explore Terroir</span> &rarr;
                         </div>
                     </div>
                 </a>
@@ -813,11 +1090,11 @@
                     <div class="origin-card-body">
                         <div>
                             <p class="origin-country">Brazil &bull; Cerrado Mineiro</p>
-                            <h3 class="origin-name">Event Horizon</h3>
-                            <p class="origin-notes">Dark chocolate, toasted hazelnut praline, velvety caramel fudge, and cane sugar.</p>
+                            <h3 class="origin-name">Brazilian Origin</h3>
+                            <p class="origin-notes">Sun-cured brick patio cherries developing velvety full-bodied warmth, toasted hazelnut praline, and deep bittersweet cocoa.</p>
                         </div>
                         <div class="origin-card-cta">
-                            <span>Experience Origin</span> &rarr;
+                            <span>Explore Terroir</span> &rarr;
                         </div>
                     </div>
                 </a>
@@ -831,22 +1108,22 @@
                     <div class="origin-card-body">
                         <div>
                             <p class="origin-country">Colombia &bull; Huila Andes</p>
-                            <h3 class="origin-name">Nebula Drift</h3>
-                            <p class="origin-notes">Dark cherry, cocoa nibs, brown sugar, spiced plum, and juicy berry acidity.</p>
+                            <h3 class="origin-name">Colombian Origin</h3>
+                            <p class="origin-notes">High-altitude Andean slopes producing wine-like complexity, ripe dark cherries, rich dark cocoa, and lingering sweet brown sugar.</p>
                         </div>
                         <div class="origin-card-cta">
-                            <span>Experience Origin</span> &rarr;
+                            <span>Explore Terroir</span> &rarr;
                         </div>
                     </div>
                 </a>
             </div>
         </section>
 
-        <!-- SECTION 3: VISION & PHILOSOPHY -->
+        <!-- SECTION 4: VISION & PHILOSOPHY -->
         <section class="vision-section" id="vision">
             <div class="vision-container">
                 <blockquote class="vision-quote">
-                    &ldquo;Coffee is an odyssey across sensory dimensions — where terroir meets astrophysics in every brew.&rdquo;
+                    &ldquo;Coffee is an odyssey across sensory dimensions — where terroir meets celestial precision in every brew.&rdquo;
                 </blockquote>
                 <p class="vision-sub">
                     The Fourth Kind is dedicated to pushing the boundaries of specialty coffee. By sourcing only rare micro-lots from extreme altitudes and utilizing progressive fermentation protocols, we unlock flavors that defy conventional expectations.
