@@ -594,10 +594,55 @@
         });
     }
 
-    // Initial badge & logo update
+    // Initial badge, logo & variant switcher update
     function initOnLoad() {
         updateBadge();
         initBrandLogo();
+        initVariantSwitcher();
+    }
+
+    // Floating Variant Switcher for client review
+    function initVariantSwitcher() {
+        if (document.getElementById('floating-variant-switcher')) return;
+        if (window.location.pathname.includes('/compare')) return;
+
+        const isV2 = window.location.pathname.includes('landing-v2');
+        const depth = window.location.pathname.split('/').filter(Boolean).length;
+        const prefix = depth > 0 ? '../'.repeat(depth) : './';
+
+        const switcher = document.createElement('div');
+        switcher.id = 'floating-variant-switcher';
+        switcher.style.cssText = `
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 99998;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(15, 15, 15, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 30px;
+            padding: 6px 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+        `;
+
+        switcher.innerHTML = `
+            <a href="${isV2 ? prefix + 'index.html' : prefix + 'landing-v2/index.html'}" style="color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; background: rgba(255,255,255,0.12); transition: background 0.2s;">
+                <span>${isV2 ? '✦ View V1 (Classic)' : '🪐 View V2 (Planet Video)'}</span>
+            </a>
+            <span style="color: rgba(255,255,255,0.25);">|</span>
+            <a href="${prefix}compare/index.html" style="color: #aaaaaa; text-decoration: none; padding: 4px 8px; border-radius: 20px; transition: color 0.2s;">
+                <span>⚡ Compare</span>
+            </a>
+        `;
+
+        document.body.appendChild(switcher);
     }
 
     if (document.readyState === 'loading') {
@@ -608,12 +653,13 @@
     window.addEventListener('load', () => {
         updateBadge();
         initBrandLogo();
+        initVariantSwitcher();
     });
 
-    // Periodically ensure logo is maintained even if React hydrates
+    // Periodically ensure logo and switcher are maintained
     setTimeout(initBrandLogo, 200);
     setTimeout(initBrandLogo, 600);
-    setTimeout(initBrandLogo, 1500);
+    setTimeout(initVariantSwitcher, 600);
 
     // Export AddToCart helper globally
     window.AddToCart = function(id, name, subtitle, price, img, quantity) {
