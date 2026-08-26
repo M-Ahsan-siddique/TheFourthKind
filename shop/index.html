@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - The Fourth Kind</title>
+    <title>Shop — The Fourth Kind</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            font-family: 'Kumbh Sans', 'Inter', sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Kumbh Sans', 'Inter', -apple-system, sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
         
         /* Header */
@@ -23,202 +28,520 @@
             justify-content: space-between;
             align-items: center;
             padding: 24px 48px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 1200px;
+            border-bottom: 1px solid #eeeeee;
+            max-width: 1300px;
             margin: 0 auto;
+            background: #ffffff;
         }
-        .logo a {
-            color: #ffffff;
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
+            color: #000000;
+            cursor: pointer !important;
+            user-select: none;
+        }
+
+        .header-brand img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            filter: invert(1); /* Invert white logo to black */
+        }
+
+        .header-brand span {
             font-weight: 700;
-            font-size: 18px;
-            letter-spacing: 3px;
+            font-size: 16px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
         }
+
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 36px;
         }
+
         .nav-link {
-            color: #888888;
+            color: #666666;
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             transition: color 0.2s;
+            cursor: pointer !important;
+            user-select: none;
         }
+
         .nav-link:hover, .nav-link.active {
-            color: #ffffff;
+            color: #000000;
         }
         
         /* Cart Icon button */
         .cart-icon-btn {
             background: none;
             border: none;
-            cursor: pointer;
-            padding: 0;
+            cursor: pointer !important;
+            padding: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            user-select: none;
         }
+
         .cart-icon-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: #ffffff;
+            width: 22px;
+            height: 22px;
+            stroke: #000000;
+            fill: none;
         }
 
         /* Hero / Title */
         .shop-header {
             max-width: 1200px;
-            margin: 60px auto 40px;
+            margin: 70px auto 50px;
             padding: 0 48px;
             text-align: center;
         }
-        .shop-header h1 {
-            font-size: 36px;
-            font-weight: 300;
-            letter-spacing: 4px;
+
+        .shop-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin: 0 0 12px 0;
-        }
-        .shop-header p {
             color: #888888;
-            font-size: 16px;
-            letter-spacing: 1px;
-            margin: 0;
+            margin-bottom: 12px;
+        }
+
+        .shop-header h1 {
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 16px 0;
+            color: #000000;
+        }
+
+        .shop-header p {
+            color: #666666;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
         
         /* Product Grid */
         .products-grid {
-            max-width: 1200px;
-            margin: 0 auto 100px;
+            max-width: 1300px;
+            margin: 0 auto 120px;
             padding: 0 48px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 36px;
         }
+
         .product-card {
-            background: #111111;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
             border-radius: 12px;
             overflow: hidden;
-            text-decoration: none;
-            color: #ffffff;
-            transition: transform 0.3s ease, border-color 0.3s ease;
             display: flex;
             flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+            cursor: pointer !important;
+            user-select: none;
         }
+
         .product-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+            border-color: #d0d0d0;
         }
-        .product-card-img-wrap {
+
+        .product-img-wrap {
+            position: relative;
             width: 100%;
-            aspect-ratio: 1;
-            background: #181818;
+            height: 380px;
+            background: #f7f7f7;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            border-bottom: 1px solid #eeeeee;
         }
-        .product-card-img {
+
+        .product-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            object-position: center;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .product-card:hover .product-card-img {
-            transform: scale(1.05);
+
+        .product-card:hover .product-img {
+            transform: scale(1.04);
         }
-        .product-card-info {
-            padding: 24px;
+
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #000000;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 28px 24px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
             flex: 1;
+            justify-content: space-between;
         }
-        .product-card-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0;
-            letter-spacing: 1px;
-        }
-        .product-card-subtitle {
-            font-size: 13px;
-            color: #888888;
-            margin: 0;
+
+        .product-roast {
+            font-size: 11px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            color: #888888;
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            color: #000000;
+        }
+
+        .product-flavor-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .flavor-tag {
+            background: #f2f2f2;
+            color: #555555;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
             letter-spacing: 0.5px;
         }
-        .product-card-price {
-            font-size: 16px;
-            font-weight: 700;
+
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 18px;
+            border-top: 1px solid #eeeeee;
             margin-top: auto;
-            padding-top: 12px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .product-btns {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-add-cart {
+            background: #000000;
             color: #ffffff;
+            border: 1px solid #000000;
+            padding: 10px 18px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer !important;
+            transition: all 0.2s ease;
+        }
+
+        .btn-add-cart:hover {
+            background: #333333;
+            border-color: #333333;
+            transform: translateY(-1px);
+        }
+
+        .btn-details {
+            color: #777777;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 8px;
+            cursor: pointer !important;
+            transition: color 0.2s;
+        }
+
+        .btn-details:hover {
+            color: #000000;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #eeeeee;
+            padding: 80px 48px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+            background: #ffffff;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #000000;
+        }
+
+        .footer-desc {
+            color: #777777;
+            font-size: 14px;
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999999;
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col a {
+            color: #555555;
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #000000;
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid #eeeeee;
+            display: flex;
+            justify-content: space-between;
+            color: #999999;
+            font-size: 12px;
+        }
+
+        @media (max-width: 992px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 20px 24px;
+            }
+            .shop-header {
+                padding: 0 24px;
+                margin: 40px auto 30px;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+                padding: 0 24px;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
         }
     </style>
 </head>
 <body>
+
     <!-- Header -->
     <header>
-        <div class="logo">
-            <a href="../index.html">The Fourth Kind</a>
-        </div>
+        <a href="../index.html" class="header-brand">
+            <img src="../assits/logo/Vector.png" alt="The Fourth Kind Logo">
+            <span>THE FOURTH KIND</span>
+        </a>
         <div class="nav-links">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="../coffeeorigins/euthopianorigin/index.html" class="nav-link">Origins</a>
             <a href="index.html" class="nav-link active">Shop</a>
             <a href="../contact/index.html" class="nav-link">Contact</a>
-            <!-- Shopping Bag -->
-            <div class="cart-icon-btn" data-framer-name="Shopping Bag">
-                <svg viewBox="0 0 20 20">
-                    <path d="M5 4h10v3H5V4zm-2 5v9a2 2 0 002 2h10a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2zm2-4a2 2 0 012-2h6a2 2 0 012 2v2H5V5z" fill-rule="evenodd" clip-rule="evenodd"/>
+            
+            <button type="button" class="cart-icon-btn header-cart-btn" data-framer-name="Shopping Bag" aria-label="Shopping Cart">
+                <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
-            </div>
+            </button>
         </div>
     </header>
 
-    <div class="shop-header">
-        <h1>Our Coffee</h1>
-        <p>Single Origin &amp; Rare Roast Selections</p>
-    </div>
+    <!-- Main Content -->
+    <main>
+        <section class="shop-header">
+            <p class="shop-eyebrow">Cosmic Micro-Lots</p>
+            <h1>Our Coffee</h1>
+            <p>Single-origin micro-lots curated from ancient volcanic elevations and roasted to reveal extraordinary celestial flavor notes.</p>
+        </section>
 
-    <!-- Product Grid -->
-    <div class="products-grid">
-        <a href="double-pendant-necklace/index.html" class="product-card">
-            <div class="product-card-img-wrap">
-                <img src="../framerusercontent.com/images/first_coffee.png" alt="Aurora Protocol" class="product-card-img">
+        <section class="products-grid">
+            <!-- Product 1: Aurora Protocol -->
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <span class="product-badge">Ethiopia · Heirloom</span>
+                    <img src="../assits/first coffe (euthopian).png" alt="Aurora Protocol Ethiopian Coffee" class="product-img">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p class="product-roast">Light – Medium Roast &bull; Washed</p>
+                        <h3 class="product-title">Aurora Protocol</h3>
+                        <div class="product-flavor-tags">
+                            <span class="flavor-tag">Bergamot</span>
+                            <span class="flavor-tag">Wild Honey</span>
+                            <span class="flavor-tag">Jasmine Tea</span>
+                        </div>
+                    </div>
+                    <div class="product-price-row">
+                        <span class="product-price">$1.1K</span>
+                        <div class="product-btns">
+                            <a href="double-pendant-necklace/index.html" class="btn-details">Details</a>
+                            <button type="button" class="btn-add-cart" onclick="AddToCart('ethiopian-origin', 'Aurora Protocol', 'Single Origin Heirloom · Ethiopia', '$1.1K', '/framerusercontent.com/images/first_coffee.png', 1)">Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="product-card-info">
-                <h3 class="product-card-title">Aurora Protocol</h3>
-                <p class="product-card-subtitle">Double Pendant Necklace</p>
-                <div class="product-card-price">$1.1K</div>
-            </div>
-        </a>
 
-        <a href="charm-link-bracelet/index.html" class="product-card">
-            <div class="product-card-img-wrap">
-                <img src="../framerusercontent.com/images/second_coffee.png" alt="Event Horizon" class="product-card-img">
+            <!-- Product 2: Event Horizon -->
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <span class="product-badge">Brazil · Estate Lot</span>
+                    <img src="../assits/second coffe(brazil).png" alt="Event Horizon Brazilian Coffee" class="product-img">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p class="product-roast">Medium – Dark Roast &bull; Sun-Cured</p>
+                        <h3 class="product-title">Event Horizon</h3>
+                        <div class="product-flavor-tags">
+                            <span class="flavor-tag">Dark Chocolate</span>
+                            <span class="flavor-tag">Toasted Hazelnut</span>
+                            <span class="flavor-tag">Caramel</span>
+                        </div>
+                    </div>
+                    <div class="product-price-row">
+                        <span class="product-price">$1.1K</span>
+                        <div class="product-btns">
+                            <a href="charm-link-bracelet/index.html" class="btn-details">Details</a>
+                            <button type="button" class="btn-add-cart" onclick="AddToCart('brazilian-origin', 'Event Horizon', 'Sun-Cured Estate Micro-Lot · Brazil', '$1.1K', '/framerusercontent.com/images/second_coffee.png', 1)">Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="product-card-info">
-                <h3 class="product-card-title">Event Horizon</h3>
-                <p class="product-card-subtitle">Charm Link Bracelet</p>
-                <div class="product-card-price">$1.1K</div>
-            </div>
-        </a>
 
-        <a href="teardrop-dangle-earrings/index.html" class="product-card">
-            <div class="product-card-img-wrap">
-                <img src="../framerusercontent.com/images/third_coffee.png" alt="Nebula Drift" class="product-card-img">
+            <!-- Product 3: Nebula Drift -->
+            <div class="product-card">
+                <div class="product-img-wrap">
+                    <span class="product-badge">Colombia · Anaerobic</span>
+                    <img src="../assits/third coffee(colombia).png" alt="Nebula Drift Colombian Coffee" class="product-img">
+                </div>
+                <div class="product-info">
+                    <div>
+                        <p class="product-roast">Medium Roast &bull; 72hr Fermentation</p>
+                        <h3 class="product-title">Nebula Drift</h3>
+                        <div class="product-flavor-tags">
+                            <span class="flavor-tag">Dark Cherry</span>
+                            <span class="flavor-tag">Cocoa Nibs</span>
+                            <span class="flavor-tag">Spiced Plum</span>
+                        </div>
+                    </div>
+                    <div class="product-price-row">
+                        <span class="product-price">$850</span>
+                        <div class="product-btns">
+                            <a href="teardrop-dangle-earrings/index.html" class="btn-details">Details</a>
+                            <button type="button" class="btn-add-cart" onclick="AddToCart('colombian-origin', 'Nebula Drift', 'Anaerobic Reserve Lot · Colombia', '$850', '/framerusercontent.com/images/third_coffee.png', 1)">Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="product-card-info">
-                <h3 class="product-card-title">Nebula Drift</h3>
-                <p class="product-card-subtitle">Teardrop Dangle Earrings</p>
-                <div class="product-card-price">$850</div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">THE FOURTH KIND</div>
+                <p class="footer-desc">Specialty single-origin coffees crafted with celestial precision and ancient botanical wisdom.</p>
             </div>
-        </a>
-    </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="../coffeeorigins/euthopianorigin/index.html">Ethiopian Origin</a></li>
+                        <li><a href="../coffeeorigins/brazilianorigin/index.html">Brazilian Origin</a></li>
+                        <li><a href="../coffeeorigins/colombianorigin/index.html">Colombian Origin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../legal/privacy-policy/index.html">Privacy Policy</a></li>
+                        <li><a href="../legal/terms-and-conditions/index.html">Terms & Conditions</a></li>
+                        <li><a href="../legal/delivery-and-return/index.html">Delivery & Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Fourth Kind. All Rights Reserved.</p>
+            <p>Crafted for Exploration</p>
+        </div>
+    </footer>
 
     <script src="../cart.js"></script>
 </body>
