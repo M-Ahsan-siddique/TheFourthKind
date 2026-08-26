@@ -17,21 +17,28 @@
         body {
             background-color: #ffffff;
             color: #000000;
-            font-family: 'Kumbh Sans', 'Inter', -apple-system, sans-serif;
+            font-family: 'Kumbh Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
-        
-        /* Header */
-        header {
+
+        /* HEADER — EXACT CLONE OF MAIN PAGE (LIGHT/WHITE THEME) */
+        header.site-header {
+            width: 100%;
+            border-bottom: 1px solid #eeeeee;
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 48px;
-            border-bottom: 1px solid #eeeeee;
-            max-width: 1300px;
-            margin: 0 auto;
-            background: #ffffff;
         }
 
         .header-brand {
@@ -44,67 +51,70 @@
             user-select: none;
         }
 
-        .header-brand img {
+        .brand-logo-img {
             width: 28px;
             height: 28px;
             object-fit: contain;
-            filter: invert(1); /* Invert white logo to black */
+            filter: invert(1); /* Inverts white asset to crisp black */
+            display: block;
         }
 
-        .header-brand span {
-            font-weight: 700;
+        .brand-logo-text {
+            font-family: 'Kumbh Sans', sans-serif;
             font-size: 16px;
-            letter-spacing: 2.5px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
+            color: #000000;
+            line-height: 1;
         }
 
-        .nav-links {
+        .header-right {
             display: flex;
             align-items: center;
-            gap: 36px;
+            gap: 32px;
         }
 
         .nav-link {
-            color: #666666;
+            font-family: 'Kumbh Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: #000000;
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: color 0.2s;
+            letter-spacing: 0px;
             cursor: pointer !important;
             user-select: none;
+            transition: opacity 0.2s;
         }
 
-        .nav-link:hover, .nav-link.active {
-            color: #000000;
+        .nav-link:hover {
+            opacity: 0.7;
         }
-        
-        /* Cart Icon button */
+
         .cart-icon-btn {
-            background: none;
+            background: transparent;
             border: none;
             cursor: pointer !important;
-            padding: 6px;
+            padding: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            color: #000000;
             user-select: none;
+            position: relative;
         }
 
         .cart-icon-btn svg {
             width: 22px;
             height: 22px;
-            stroke: #000000;
-            fill: none;
+            display: block;
         }
 
         /* Hero / Title */
         .shop-header {
             max-width: 1200px;
             margin: 70px auto 50px;
-            padding: 0 48px;
+            padding: 0 24px;
             text-align: center;
         }
 
@@ -137,9 +147,9 @@
         
         /* Product Grid */
         .products-grid {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto 120px;
-            padding: 0 48px;
+            padding: 0 24px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 36px;
@@ -193,6 +203,7 @@
             left: 16px;
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(0, 0, 0, 0.08);
             padding: 6px 12px;
             border-radius: 20px;
@@ -304,8 +315,8 @@
         /* Footer */
         footer {
             border-top: 1px solid #eeeeee;
-            padding: 80px 48px 40px;
-            max-width: 1300px;
+            padding: 80px 24px 40px;
+            max-width: 1200px;
             margin: 0 auto;
             background: #ffffff;
         }
@@ -380,16 +391,16 @@
         }
 
         @media (max-width: 768px) {
-            header {
-                padding: 20px 24px;
+            .header-inner {
+                padding: 16px 20px;
             }
             .shop-header {
-                padding: 0 24px;
+                padding: 0 20px;
                 margin: 40px auto 30px;
             }
             .products-grid {
                 grid-template-columns: 1fr;
-                padding: 0 24px;
+                padding: 0 20px;
             }
             .footer-content {
                 flex-direction: column;
@@ -400,25 +411,24 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <a href="../index.html" class="header-brand">
-            <img src="../assits/logo/Vector.png" alt="The Fourth Kind Logo">
-            <span>THE FOURTH KIND</span>
-        </a>
-        <div class="nav-links">
-            <a href="../index.html" class="nav-link">Home</a>
-            <a href="../coffeeorigins/euthopianorigin/index.html" class="nav-link">Origins</a>
-            <a href="index.html" class="nav-link active">Shop</a>
-            <a href="../contact/index.html" class="nav-link">Contact</a>
-            
-            <button type="button" class="cart-icon-btn header-cart-btn" data-framer-name="Shopping Bag" aria-label="Shopping Cart">
-                <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="9" cy="21" r="1"></circle>
-                    <circle cx="20" cy="21" r="1"></circle>
-                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-            </button>
+    <!-- Header — Identical to Main Page -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="../index.html" class="header-brand">
+                <img src="../assits/logo/Vector.png" alt="The Fourth Kind Logo" class="brand-logo-img">
+                <span class="brand-logo-text">THE FOURTH KIND</span>
+            </a>
+            <div class="header-right">
+                <a href="index.html" class="nav-link">Shop</a>
+                <a href="../contact/index.html" class="nav-link">Contact</a>
+                
+                <button type="button" class="cart-icon-btn header-cart-btn" data-framer-name="Shopping Bag" aria-label="Shopping Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path d="M 4 8.5 C 4 7.672 4.672 7 5.5 7 L 18.5 7 C 19.328 7 20 7.672 20 8.5 L 20 18.5 C 20 19.328 19.328 20 18.5 20 L 5.5 20 C 4.672 20 4 19.328 4 18.5 Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M 8.5 10 C 8.5 11.933 10.067 13.5 12 13.5 C 13.933 13.5 15.5 11.933 15.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
 
