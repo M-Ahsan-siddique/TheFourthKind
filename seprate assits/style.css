@@ -190,82 +190,6 @@ html, body {
 }
 
 /* ==========================================================================
-   BOTTOM BAR (Switcher & Netlify Badge)
-   ========================================================================== */
-.bottom-bar {
-  position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 50;
-  pointer-events: none;
-}
-
-.variant-pill {
-  pointer-events: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 18px;
-  background: rgba(18, 18, 18, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 100px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-.pill-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: #ffffff;
-  text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  transition: opacity 0.2s ease;
-}
-
-.pill-action:hover {
-  opacity: 0.75;
-}
-
-.pill-icon {
-  font-size: 13px;
-}
-
-.pill-divider {
-  color: rgba(255, 255, 255, 0.25);
-  font-size: 11px;
-}
-
-.netlify-badge {
-  pointer-events: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: rgba(14, 30, 37, 0.9);
-  border: 1px solid rgba(0, 199, 183, 0.25);
-  border-radius: 100px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: #ffffff;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.netlify-badge strong {
-  font-weight: 600;
-  color: #ffffff;
-}
-
-/* ==========================================================================
    RESPONSIVE SCALING (Mobile & Tablet)
    ========================================================================== */
 @media (max-width: 1200px) {
@@ -290,24 +214,5 @@ html, body {
 
   .nav-item {
     font-size: 14px;
-  }
-
-  .bottom-bar {
-    bottom: 16px;
-    left: 16px;
-    right: 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .variant-pill {
-    transform: scale(0.9);
-    transform-origin: left bottom;
-  }
-
-  .netlify-badge {
-    transform: scale(0.9);
-    transform-origin: left bottom;
   }
 }
