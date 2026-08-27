@@ -175,6 +175,37 @@
         filter: invert(1) !important;
     }
 </style>
+
+<style id="mobile-responsive-overrides">
+  @media (max-width: 809px) {
+    html, body {
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+    }
+    #main {
+      width: 100% !important;
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+    }
+    /* Ensure product cards and banners scale nicely on mobile */
+    .fk-1tlhske, .fk-fWanr, [data-fk-name="Frameship Upgrade Paywall"] {
+      display: none !important;
+    }
+    /* Prevent badge/button collision */
+    .variant-switcher {
+      bottom: 60px !important;
+      left: 12px !important;
+      transform: scale(0.9) !important;
+      transform-origin: bottom left !important;
+    }
+    /* Polish feature cards on mobile */
+    .fk-1y34o8w {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+  }
+</style>
+
 </head>
 <body>
         <!-- Start of bodyStart -->
