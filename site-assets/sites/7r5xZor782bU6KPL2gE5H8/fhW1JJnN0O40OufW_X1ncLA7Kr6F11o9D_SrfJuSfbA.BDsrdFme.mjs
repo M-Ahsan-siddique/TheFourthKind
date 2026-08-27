@@ -1,0 +1,12 @@
+export default {};
+export const utils = {};
+export const richText = () => '';
+export const richText1 = () => '';
+export const richText2 = () => '';
+export const richText3 = () => '';
+export const richText4 = () => '';
+export const richText5 = () => '';
+export const richText6 = () => '';
+export const richText7 = () => '';
+export const richText8 = () => '';
+export const richText9 = () => '';

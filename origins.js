@@ -8,7 +8,7 @@
     const ORIGINS_DATA = {
         'ethiopian-origin': {
             id: 'ethiopian-origin',
-            productKey: 'double-pendant-necklace',
+            productKey: 'aurora-protocol',
             name: 'Aurora Protocol',
             originTitle: 'Ethiopian Origin',
             subtitle: 'Single Origin Heirloom',
@@ -33,11 +33,11 @@
             accentGlow: 'rgba(212, 163, 115, 0.25)',
             mediaUrl: '/site-assets/images/first_coffee.png',
             bgPhoto: '/site-assets/images/dGCSuqgN6Pd6sB9B8Vqfgn1u9w.jpg',
-            productPageUrl: 'shop/double-pendant-necklace/index.html'
+            productPageUrl: 'shop/aurora-protocol/index.html'
         },
         'brazilian-origin': {
             id: 'brazilian-origin',
-            productKey: 'charm-link-bracelet',
+            productKey: 'event-horizon',
             name: 'Event Horizon',
             originTitle: 'Brazilian Origin',
             subtitle: 'Sun-Cured Estate Micro-Lot',
@@ -62,11 +62,11 @@
             accentGlow: 'rgba(46, 204, 113, 0.25)',
             mediaUrl: '/site-assets/images/second_coffee.png',
             bgPhoto: '/site-assets/images/JrcX0HaQhQ36bO1hTj1SpMOI9d0.jpg',
-            productPageUrl: 'shop/charm-link-bracelet/index.html'
+            productPageUrl: 'shop/event-horizon/index.html'
         },
         'colombian-origin': {
             id: 'colombian-origin',
-            productKey: 'teardrop-dangle-earrings',
+            productKey: 'nebula-drift',
             name: 'Nebula Drift',
             originTitle: 'Colombian Origin',
             subtitle: 'Anaerobic Reserve Lot',
@@ -91,7 +91,7 @@
             accentGlow: 'rgba(231, 76, 60, 0.25)',
             mediaUrl: '/site-assets/images/third_coffee.png',
             bgPhoto: '/site-assets/images/NEEsxWV5lydRvranaCcqiAhxmHw.jpg',
-            productPageUrl: 'shop/teardrop-dangle-earrings/index.html'
+            productPageUrl: 'shop/nebula-drift/index.html'
         }
     };
 
@@ -545,13 +545,13 @@
         const href = el.getAttribute('href') || '';
         const text = (el.textContent || '').toLowerCase();
 
-        if (href.includes('minimalist-elegance') || text.includes('ethiop') || text.includes('euthop') || text.includes('aurora')) {
+        if (href.includes('single-origin-select') || text.includes('ethiop') || text.includes('euthop') || text.includes('aurora')) {
             return 'ethiopian-origin';
         }
-        if (href.includes('bridal-bliss') || text.includes('brazil') || text.includes('event horizon')) {
+        if (href.includes('micro-lot-reserve') || text.includes('brazil') || text.includes('event horizon')) {
             return 'brazilian-origin';
         }
-        if (href.includes('timeless-classics') || text.includes('colomb') || text.includes('nebula')) {
+        if (href.includes('signature-roasts') || text.includes('colomb') || text.includes('nebula')) {
             return 'colombian-origin';
         }
         return null;
