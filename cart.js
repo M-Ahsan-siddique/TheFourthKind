@@ -253,9 +253,9 @@
             z-index: 10;
         }
 
-        /* Suppress Frameship paywall / Framer internal cart modals */
+        /* Suppress Frameship paywall / FK internal cart modals */
         #frameship-cart-portal,
-        .framer-fWanr,
+        .fk-fWanr,
         [id="frameship-cart-portal"],
         .frameship-contents {
             display: none !important;
@@ -452,7 +452,7 @@
     function updateBadge() {
         const cart = getStoredCart();
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        document.querySelectorAll('.framer-1hj4sdy-container, [data-framer-name="Shopping Bag"]').forEach(bag => {
+        document.querySelectorAll('.fk-1hj4sdy-container, [data-fk-name="Shopping Bag"]').forEach(bag => {
             const oldBadge = bag.querySelector('.cart-badge');
             if (oldBadge) oldBadge.remove();
 
@@ -485,7 +485,7 @@
 
         // 1. Intercept Shopping Cart button clicks
         const cartTrigger = target.closest(
-            '.framer-1hj4sdy-container, [data-framer-name="Shopping Bag"], [name="Shopping Bag"], .framer-SBvaW, .framer-x7pb3g-container, .cart-icon-btn, .header-cart-btn'
+            '.fk-1hj4sdy-container, [data-fk-name="Shopping Bag"], [name="Shopping Bag"], .fk-SBvaW, .fk-x7pb3g-container, .cart-icon-btn, .header-cart-btn'
         );
 
         if (cartTrigger) {
@@ -496,7 +496,7 @@
             return;
         }
 
-        // 2. Intercept ANY internal navigation link to bypass Framer React Router hijack
+        // 2. Intercept ANY internal navigation link to bypass FK React Router hijack
         const link = target.closest('a');
         if (link) {
             const href = link.getAttribute('href');
@@ -522,23 +522,23 @@
         nav, nav *,
         .site-header, .site-header *,
         .site-header-container, .site-header-container *,
-        .framer-14gypjf-container, .framer-14gypjf-container *,
-        .framer-SmLyV, .framer-SmLyV *,
-        .framer-tklrn2, .framer-tklrn2 *,
-        .framer-1bwqlp0, .framer-1bwqlp0 *,
-        .framer-xeaj90, .framer-xeaj90 *,
-        .framer-157tqj7, .framer-157tqj7 *,
-        .framer-1q4jgyq, .framer-1q4jgyq *,
-        .framer-1o2m0j5, .framer-1o2m0j5 *,
-        .framer-p232i8, .framer-p232i8 *,
-        .framer-1p5y5m6, .framer-1p5y5m6 *,
-        .framer-16n724t, .framer-16n724t *,
-        [data-framer-name="Navigation"], [data-framer-name="Navigation"] *,
-        [data-framer-name="Header"], [data-framer-name="Header"] *,
-        [data-framer-name="Links"], [data-framer-name="Links"] *,
-        [data-framer-name="Shop"], [data-framer-name="Shop"] *,
-        [data-framer-name="Contact"], [data-framer-name="Contact"] *,
-        [data-framer-name="Shopping Bag"], [data-framer-name="Shopping Bag"] *,
+        .fk-14gypjf-container, .fk-14gypjf-container *,
+        .fk-SmLyV, .fk-SmLyV *,
+        .fk-tklrn2, .fk-tklrn2 *,
+        .fk-1bwqlp0, .fk-1bwqlp0 *,
+        .fk-xeaj90, .fk-xeaj90 *,
+        .fk-157tqj7, .fk-157tqj7 *,
+        .fk-1q4jgyq, .fk-1q4jgyq *,
+        .fk-1o2m0j5, .fk-1o2m0j5 *,
+        .fk-p232i8, .fk-p232i8 *,
+        .fk-1p5y5m6, .fk-1p5y5m6 *,
+        .fk-16n724t, .fk-16n724t *,
+        [data-fk-name="Navigation"], [data-fk-name="Navigation"] *,
+        [data-fk-name="Header"], [data-fk-name="Header"] *,
+        [data-fk-name="Links"], [data-fk-name="Links"] *,
+        [data-fk-name="Shop"], [data-fk-name="Shop"] *,
+        [data-fk-name="Contact"], [data-fk-name="Contact"] *,
+        [data-fk-name="Shopping Bag"], [data-fk-name="Shopping Bag"] *,
         .header-logo-link, .header-logo-link *,
         .header-menu-link, .header-menu-link *,
         .nav-link, .nav-link *,
@@ -557,7 +557,7 @@
         }
 
         /* Prevent logo and brand text collision on V1 & all pages */
-        .framer-SmLyV.framer-tklrn2,
+        .fk-SmLyV.fk-tklrn2,
         .header-logo-link {
             display: flex !important;
             flex-direction: row !important;
@@ -569,16 +569,16 @@
             max-width: 100% !important;
         }
 
-        /* Hide Framer internal broken sprite SVGs that distort the logo */
-        .framer-hmafz8 .framer-oq0czg,
-        .framer-hmafz8 .framer-1q714nk,
-        .framer-hmafz8 .framer-1tsr5q1,
-        .framer-hmafz8 .svgContainer,
-        .framer-hmafz8 svg {
+        /* Hide FK internal broken sprite SVGs that distort the logo */
+        .fk-hmafz8 .fk-oq0czg,
+        .fk-hmafz8 .fk-1q714nk,
+        .fk-hmafz8 .fk-1tsr5q1,
+        .fk-hmafz8 .svgContainer,
+        .fk-hmafz8 svg {
             display: none !important;
         }
 
-        .framer-SmLyV .framer-hmafz8,
+        .fk-SmLyV .fk-hmafz8,
         .header-logo-icon-wrap {
             display: flex !important;
             align-items: center !important;
@@ -595,7 +595,7 @@
             background-position: center !important;
         }
 
-        .brand-logo-img, .header-logo-icon, .framer-hmafz8 img {
+        .brand-logo-img, .header-logo-icon, .fk-hmafz8 img {
             width: 28px !important;
             height: 28px !important;
             min-width: 28px !important;
@@ -606,14 +606,14 @@
         }
 
         /* Keep THE FOURTH KIND brand text visible in split screen & mobile */
-        .framer-SmLyV .framer-1m4kwh8 {
+        .fk-SmLyV .fk-1m4kwh8 {
             display: flex !important;
             align-items: center !important;
             flex-shrink: 0 !important;
         }
 
-        .framer-SmLyV .framer-1m4kwh8 p,
-        .framer-SmLyV .framer-text,
+        .fk-SmLyV .fk-1m4kwh8 p,
+        .fk-SmLyV .fk-text,
         .injected-brand-text {
             font-family: 'Kumbh Sans', sans-serif !important;
             font-size: clamp(15px, 1.8vw, 24px) !important;
@@ -630,14 +630,14 @@
         /* Navbar Inversion over White Section */
         .navbar-on-white .brand-logo-img,
         .navbar-on-white .header-logo-icon,
-        .navbar-on-white .framer-hmafz8,
-        .navbar-on-white .framer-hmafz8 img,
-        .framer-14gypjf-container.navbar-on-white .framer-hmafz8,
-        .framer-14gypjf-container.navbar-on-white .framer-hmafz8 img {
+        .navbar-on-white .fk-hmafz8,
+        .navbar-on-white .fk-hmafz8 img,
+        .fk-14gypjf-container.navbar-on-white .fk-hmafz8,
+        .fk-14gypjf-container.navbar-on-white .fk-hmafz8 img {
             filter: invert(1) !important;
         }
         .navbar-on-white .injected-brand-text,
-        .framer-14gypjf-container.navbar-on-white .injected-brand-text {
+        .fk-14gypjf-container.navbar-on-white .injected-brand-text {
             color: #000000 !important;
         }
     `;
@@ -648,9 +648,9 @@
         const prefix = depth > 0 ? '../'.repeat(depth) : './';
         const logoUrl = prefix + 'assits/logo/Vector.png';
 
-        const brandLinks = document.querySelectorAll('.framer-SmLyV.framer-tklrn2, .header-logo-link, [data-framer-name="Default"], [data-framer-name="Mobile"]');
+        const brandLinks = document.querySelectorAll('.fk-SmLyV.fk-tklrn2, .header-logo-link, [data-fk-name="Default"], [data-fk-name="Mobile"]');
         brandLinks.forEach(link => {
-            const container = link.querySelector('.framer-hmafz8');
+            const container = link.querySelector('.fk-hmafz8');
             if (container) {
                 container.style.backgroundImage = `url('${logoUrl}')`;
                 if (!container.querySelector('.brand-logo-img')) {
@@ -663,7 +663,7 @@
                 }
             }
 
-            // If the link has no text (e.g. Framer Mobile Variant), inject THE FOURTH KIND text
+            // If the link has no text (e.g. FK Mobile Variant), inject THE FOURTH KIND text
             const hasText = link.textContent.trim().length > 0;
             if (!hasText && !link.querySelector('.injected-brand-text')) {
                 const textSpan = document.createElement('span');

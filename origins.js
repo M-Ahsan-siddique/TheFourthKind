@@ -31,8 +31,8 @@
             body: 'Silky & Delicate',
             accentColor: '#D4A373',
             accentGlow: 'rgba(212, 163, 115, 0.25)',
-            mediaUrl: '/framerusercontent.com/images/first_coffee.png',
-            bgPhoto: '/framerusercontent.com/images/GcYwhsR3AxAPP83jIFGm7LROKDU.jpg',
+            mediaUrl: '/site-assets/images/first_coffee.png',
+            bgPhoto: '/site-assets/images/GcYwhsR3AxAPP83jIFGm7LROKDU.jpg',
             productPageUrl: 'shop/double-pendant-necklace/index.html'
         },
         'brazilian-origin': {
@@ -60,8 +60,8 @@
             body: 'Heavy & Velvety',
             accentColor: '#2ECC71',
             accentGlow: 'rgba(46, 204, 113, 0.25)',
-            mediaUrl: '/framerusercontent.com/images/second_coffee.png',
-            bgPhoto: '/framerusercontent.com/images/JrcX0HaQhQ36bO1hTj1SpMOI9d0.jpg',
+            mediaUrl: '/site-assets/images/second_coffee.png',
+            bgPhoto: '/site-assets/images/JrcX0HaQhQ36bO1hTj1SpMOI9d0.jpg',
             productPageUrl: 'shop/charm-link-bracelet/index.html'
         },
         'colombian-origin': {
@@ -89,8 +89,8 @@
             body: 'Round & Syrupy',
             accentColor: '#E74C3C',
             accentGlow: 'rgba(231, 76, 60, 0.25)',
-            mediaUrl: '/framerusercontent.com/images/third_coffee.png',
-            bgPhoto: '/framerusercontent.com/images/NEEsxWV5lydRvranaCcqiAhxmHw.jpg',
+            mediaUrl: '/site-assets/images/third_coffee.png',
+            bgPhoto: '/site-assets/images/NEEsxWV5lydRvranaCcqiAhxmHw.jpg',
             productPageUrl: 'shop/teardrop-dangle-earrings/index.html'
         }
     };
@@ -100,8 +100,8 @@
     styleEl.id = 'origins-master-detail-styles';
     styleEl.innerHTML = `
         /* Cursor pointer and card hover lift for origin cards */
-        .framer-oxezyj a,
-        [data-framer-name="Collections"] a {
+        .fk-oxezyj a,
+        [data-fk-name="Collections"] a {
             cursor: pointer !important;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -734,7 +734,7 @@
             e.stopImmediatePropagation();
             openOriginDetail(originId, link);
         }
-    }, true); // Capture phase - fires before Framer navigation
+    }, true); // Capture phase - fires before FK navigation
 
     // Export globally for external calls
     window.openOriginExperience = function(originId) {
