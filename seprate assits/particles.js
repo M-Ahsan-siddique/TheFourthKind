@@ -1,6 +1,6 @@
 /**
  * THE FOURTH KIND — COSMIC STARFIELD ENGINE
- * Pure HTML5 Canvas, 60fps, Zero Dependencies, Mouse Parallax & Twinkle
+ * Subtle, gentle, cinematic space particles
  */
 
 (function () {
@@ -12,45 +12,33 @@
   let height = 0;
   let dpr = 1;
   let particles = [];
-  const PARTICLE_COUNT = 150;
+  const PARTICLE_COUNT = 55; // Sparse, elegant, uncluttered like the original
 
-  // Mouse interaction state
-  let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-
-  // Resize handler
   function resize() {
     dpr = window.devicePixelRatio || 1;
-    width = window.innerWidth;
-    height = window.innerHeight;
+    const rect = canvas.getBoundingClientRect();
+    width = rect.width || window.innerWidth;
+    height = rect.height || window.innerHeight;
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     ctx.scale(dpr, dpr);
 
-    // Re-initialize particles if empty
     if (particles.length === 0) {
       initParticles();
     }
   }
 
-  // Particle constructor
   function createParticle() {
     return {
       x: Math.random() * width,
-      y: Math.random() * height,
-      size: Math.random() * 1.8 + 0.4, // Size between 0.4px and 2.2px
-      baseAlpha: Math.random() * 0.6 + 0.2, // Base opacity between 0.2 and 0.8
-      alpha: 0,
-      twinkleSpeed: Math.random() * 0.02 + 0.008,
+      y: Math.random() * (height * 0.75), // Concentrate in upper cosmic sky
+      size: Math.random() * 1.2 + 0.5, // Tiny, subtle pinpricks (0.5px - 1.7px)
+      baseAlpha: Math.random() * 0.5 + 0.2, // Subtle transparency
+      twinkleSpeed: Math.random() * 0.015 + 0.005,
       twinklePhase: Math.random() * Math.PI * 2,
-      speedX: (Math.random() - 0.5) * 0.15, // Gentle drift
-      speedY: -(Math.random() * 0.25 + 0.08), // Upward float
-      depth: Math.random() * 0.8 + 0.2, // Parallax depth factor
-      color: Math.random() > 0.85 
-        ? 'rgba(230, 245, 255, ' // Subtle cosmic cyan
-        : Math.random() > 0.9 
-          ? 'rgba(255, 245, 220, ' // Subtle gold star
-          : 'rgba(255, 255, 255, ' // Crisp white
+      speedX: (Math.random() - 0.5) * 0.08,
+      speedY: -(Math.random() * 0.12 + 0.04) // Very slow, graceful upward drift
     };
   }
 
@@ -61,68 +49,33 @@
     }
   }
 
-  // Mouse tracking for subtle 3D parallax
-  window.addEventListener('mousemove', (e) => {
-    mouse.targetX = (e.clientX - width / 2) * 0.035;
-    mouse.targetY = (e.clientY - height / 2) * 0.035;
-  });
-
-  window.addEventListener('touchmove', (e) => {
-    if (e.touches.length > 0) {
-      mouse.targetX = (e.touches[0].clientX - width / 2) * 0.025;
-      mouse.targetY = (e.touches[0].clientY - height / 2) * 0.025;
-    }
-  }, { passive: true });
-
   window.addEventListener('resize', resize);
   resize();
 
-  // Animation Loop
-  let lastTime = 0;
-  function animate(time) {
-    // Smooth lerp for parallax
-    mouse.x += (mouse.targetX - mouse.x) * 0.06;
-    mouse.y += (mouse.targetY - mouse.y) * 0.06;
-
+  function animate() {
     ctx.clearRect(0, 0, width, height);
 
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
 
-      // Update positions
       p.x += p.speedX;
       p.y += p.speedY;
 
-      // Wrap around edges
-      if (p.y < -10) {
-        p.y = height + 10;
+      // Wrap around smoothly
+      if (p.y < -5) {
+        p.y = height * 0.75 + 5;
         p.x = Math.random() * width;
       }
-      if (p.x < -10) p.x = width + 10;
-      if (p.x > width + 10) p.x = -10;
+      if (p.x < -5) p.x = width + 5;
+      if (p.x > width + 5) p.x = -5;
 
-      // Twinkle calculation
       p.twinklePhase += p.twinkleSpeed;
-      const pulse = Math.sin(p.twinklePhase);
-      const currentAlpha = Math.max(0.08, Math.min(1, p.baseAlpha + pulse * 0.3));
+      const alpha = Math.max(0.1, Math.min(0.85, p.baseAlpha + Math.sin(p.twinklePhase) * 0.25));
 
-      // Calculate rendered position with parallax depth
-      const renderX = p.x + mouse.x * p.depth;
-      const renderY = p.y + mouse.y * p.depth;
-
-      // Draw Star
       ctx.beginPath();
-      ctx.arc(renderX, renderY, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = p.color + currentAlpha + ')';
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
       ctx.fill();
-
-      // Soft outer glow for brighter stars
-      if (p.size > 1.4 && currentAlpha > 0.5) {
-        ctx.beginPath();
-        ctx.arc(renderX, renderY, p.size * 2.2, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + (currentAlpha * 0.18) + ')';
-        ctx.fill();
-      }
     }
 
     requestAnimationFrame(animate);

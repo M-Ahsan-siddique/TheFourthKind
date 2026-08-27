@@ -3,96 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Fourth Kind — Hero Section (Version 1)</title>
+  <title>The Fourth Kind</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION (VERSION 1) -->
   <section class="hero" id="hero">
-    
-    <!-- TOP NAVIGATION BAR -->
+
+    <!-- TOP NAVIGATION -->
     <header class="navbar">
       <div class="nav-container">
-        <a href="#" class="brand-logo">
-          <span class="brand-name">THE FOURTH KIND</span>
-        </a>
-
-        <nav class="nav-links">
-          <a href="../shop/index.html" class="nav-link">Shop</a>
-          <a href="../contact/index.html" class="nav-link">Contact</a>
-          <a href="#" class="cart-btn" aria-label="Shopping Cart">
-            <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="20" height="20" fill="currentColor">
-              <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM96,88a32,32,0,0,0,64,0,8,8,0,0,0-16,0,16,16,0,0,1-32,0,8,8,0,0,0-16,0Z"/>
-            </svg>
-            <span class="cart-badge">0</span>
-          </a>
+        <a href="#" class="brand-title">THE FOURTH KIND</a>
+        <nav class="nav-menu">
+          <a href="../shop/index.html" class="nav-item">Shop</a>
+          <a href="../contact/index.html" class="nav-item">Contact</a>
         </nav>
       </div>
     </header>
 
-    <!-- BACKGROUND EFFECTS & PLANETARY HORIZON -->
-    <div class="space-viewport">
+    <!-- HORIZON & SPACE BACKGROUND STAGE -->
+    <div class="stage-container">
       
-      <!-- Interactive Starfield Canvas -->
+      <!-- Subtle Starfield / Cosmic Dust Particles -->
       <canvas id="starfield"></canvas>
 
-      <!-- Atmospheric Radial Sunlight Flare -->
-      <div class="radial-flare"></div>
+      <!-- Center Radial Flare -->
+      <div class="flare-radial"></div>
 
-      <!-- Atmospheric Eclipse Glow Layer -->
-      <div class="eclipse-glow"></div>
+      <!-- Eclipse Atmospheric Gradient -->
+      <div class="eclipse-atmosphere"></div>
 
-      <!-- Celestial Curved Planet Rim (Horizon Base) -->
-      <div class="planet-horizon"></div>
+      <!-- Celestial Horizon Curve Rim -->
+      <div class="horizon-rim"></div>
 
-      <!-- Side Vignettes (Dark Space Gradients) -->
-      <div class="vignette-left"></div>
-      <div class="vignette-right"></div>
-      <div class="vignette-top"></div>
-    </div>
-
-    <!-- CENTERED HERO CONTENT -->
-    <div class="hero-content">
-      <div class="badge-pill">
-        <span class="badge-dot"></span>
-        <span class="badge-text">SPECIALTY CRAFT COFFEE</span>
+      <!-- Side Vignette Fades -->
+      <div class="side-fades">
+        <div class="fade-left"></div>
+        <div class="fade-right"></div>
       </div>
 
-      <h1 class="hero-title">
-        COFFEE FROM<br />
-        <span class="highlight">ANOTHER WORLD</span>
-      </h1>
-
-      <p class="hero-subtitle">
-        Rare single-origin coffees ethically harvested from ancient terroir, roasted in micro-lots for a cup that defies convention.
-      </p>
-
-      <div class="hero-cta-group">
-        <a href="../shop/index.html" class="btn btn-primary">
-          <span>EXPLORE OUR COFFEE</span>
-          <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor">
-            <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/>
-          </svg>
-        </a>
-        <a href="../coffeeorigins/ethiopianorigin/index.html" class="btn btn-secondary">
-          <span>VIEW ORIGINS</span>
-        </a>
-      </div>
     </div>
 
-    <!-- SUBTLE BOTTOM INDICATOR -->
-    <div class="scroll-cue">
-      <span class="cue-label">SCROLL TO DISCOVER</span>
-      <div class="cue-line"></div>
+    <!-- BOTTOM FLOATING SWITCHER & BADGE -->
+    <div class="bottom-bar">
+      <div class="variant-pill">
+        <a href="../landing-v2/index.html" class="pill-action">
+          <span class="pill-icon">🪐</span>
+          <span>View V2 (Planet Video)</span>
+        </a>
+        <span class="pill-divider">|</span>
+        <a href="../compare/index.html" class="pill-action">
+          <span class="pill-icon">⚡</span>
+          <span>Compare</span>
+        </a>
+      </div>
+
+      <div class="netlify-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.92 9.06L12.56 4.7a1.5 1.5 0 0 0-2.12 0L6.08 9.06a1.5 1.5 0 0 0 0 2.12l4.36 4.36a1.5 1.5 0 0 0 2.12 0l4.36-4.36a1.5 1.5 0 0 0 0-2.12z" fill="#00C7B7"/>
+          <path d="M12 2L3 11l9 9 9-9-9-9z" stroke="#00C7B7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Powered by <strong>Netlify</strong></span>
+      </div>
     </div>
 
   </section>
 
-  <!-- STARFIELD SCRIPT -->
+  <!-- STARFIELD ENGINE -->
   <script src="particles.js"></script>
 </body>
 </html>
