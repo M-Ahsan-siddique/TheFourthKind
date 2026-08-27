@@ -32,7 +32,7 @@
             accentColor: '#D4A373',
             accentGlow: 'rgba(212, 163, 115, 0.25)',
             mediaUrl: '/site-assets/images/first_coffee.png',
-            bgPhoto: '/site-assets/images/GcYwhsR3AxAPP83jIFGm7LROKDU.jpg',
+            bgPhoto: '/site-assets/images/dGCSuqgN6Pd6sB9B8Vqfgn1u9w.jpg',
             productPageUrl: 'shop/double-pendant-necklace/index.html'
         },
         'brazilian-origin': {
